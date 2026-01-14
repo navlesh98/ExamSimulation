@@ -1,7 +1,10 @@
 <h1>Exam Completed</h1>
-<p>Your score: <span id="score"></span></p>
+<p>Your Score</p>
+<h2>
+  <span id="score"></span> / <span id="total"></span>
+</h2>
 
 <script>
-document.getElementById("score").innerText =
-  localStorage.getItem("score");
+document.getElementById("score").innerText = localStorage.getItem("score");
+document.getElementById("total").innerText = localStorage.getItem("total");
 </script>
