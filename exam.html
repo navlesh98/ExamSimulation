@@ -1,7 +1,33 @@
-<h2 id="timer"></h2>
-<div id="question"></div>
-<div id="options"></div>
-<button onclick="nextQuestion()">Next</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exam Simulation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/exam.css" />
+</head>
+<body>
 
-<script src="js/exam.js"></script>
-<script src="js/timer.js"></script>
+  <!-- Top Bar -->
+  <header class="exam-header">
+    <div id="progress">Question 1 / 40</div>
+    <div id="timer">01:15:00</div>
+  </header>
+
+  <!-- Question Card -->
+  <main class="exam-container">
+    <div class="question-card">
+      <h2 id="question-text"></h2>
+
+      <div id="options" class="options"></div>
+
+      <div class="actions">
+        <button id="nextBtn" disabled>Next</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/exam.js"></script>
+  <script src="js/timer.js"></script>
+</body>
+</html>
