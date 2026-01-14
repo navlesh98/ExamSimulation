@@ -1,19 +1,62 @@
-<select id="subject">
-  <option value="chemistry">Chemistry</option>
-  <option value="physics">Physics</option>
-</select>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Select Exam</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/select.css" />
+</head>
+<body>
 
-<select id="year">
-  <option value="2025">2025</option>
-  <option value="2024">2024</option>
-</select>
+  <!-- Header -->
+  <header class="select-header">
+    <h1>Select Your Exam</h1>
+    <p>Choose a subject and exam year to begin your simulation.</p>
+  </header>
 
-<button onclick="startExam()">Start</button>
+  <!-- Selection Area -->
+  <main class="select-container">
 
-<script>
-function startExam() {
-  const subject = document.getElementById("subject").value;
-  const year = document.getElementById("year").value;
-  window.location.href = `exam.html?subject=${subject}&year=${year}`;
-}
-</script>
+    <!-- Subjects -->
+    <section class="block">
+      <h2>Choose Subject</h2>
+
+      <div class="subjects">
+        <div class="subject-card" data-subject="chemistry">Chemistry</div>
+        <div class="subject-card" data-subject="physics">Physics</div>
+        <div class="subject-card" data-subject="biology">Biology</div>
+      </div>
+    </section>
+
+    <!-- Years -->
+    <section class="block">
+      <h2>Choose Exam Year</h2>
+
+      <div class="years">
+        <button class="year-btn" data-year="2025">2025</button>
+        <button class="year-btn" data-year="2024">2024</button>
+        <button class="year-btn" data-year="2023">2023</button>
+      </div>
+    </section>
+
+    <!-- Tips -->
+    <section class="tips">
+      <h3>Exam Tips</h3>
+      <ul>
+        <li>⏱ The timer starts immediately when the exam begins</li>
+        <li>📵 Do not refresh the page during the exam</li>
+        <li>📝 Attempt all questions before submitting</li>
+        <li>🎯 Practice under real exam conditions</li>
+      </ul>
+    </section>
+
+    <!-- Start Button -->
+    <div class="start-area">
+      <button id="startBtn" disabled>Start Exam</button>
+    </div>
+
+  </main>
+
+  <script src="js/select.js"></script>
+</body>
+</html>
