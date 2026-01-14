@@ -1,5 +1,6 @@
 let questions = [];
-let current = 0;
+let currentIndex = 0;
+let selectedAnswer = null;
 let score = 0;
 
 const params = new URLSearchParams(window.location.search);
@@ -11,33 +12,52 @@ fetch(`data/${subject}/${year}.json`)
   .then(data => {
     questions = data.questions;
     startTimer(data.duration);
-    showQuestion();
+    renderQuestion();
   });
 
-function showQuestion() {
-  const q = questions[current];
-  document.getElementById("question").innerText = q.question;
+function renderQuestion() {
+  selectedAnswer = null;
+  document.getElementById("nextBtn").disabled = true;
+
+  const q = questions[currentIndex];
+  document.getElementById("question-text").innerText = q.question;
+  document.getElementById("progress").innerText =
+    `Question ${currentIndex + 1} / ${questions.length}`;
 
   const optionsDiv = document.getElementById("options");
   optionsDiv.innerHTML = "";
 
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement("button");
-    btn.innerText = opt;
-    btn.onclick = () => {
-      if (i === q.answer) score++;
-      nextQuestion();
+  q.options.forEach((opt, index) => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.innerText = opt;
+
+    div.onclick = () => {
+      document
+        .querySelectorAll(".option")
+        .forEach(o => o.classList.remove("selected"));
+
+      div.classList.add("selected");
+      selectedAnswer = index;
+      document.getElementById("nextBtn").disabled = false;
     };
-    optionsDiv.appendChild(btn);
+
+    optionsDiv.appendChild(div);
   });
 }
 
-function nextQuestion() {
-  current++;
-  if (current < questions.length) {
-    showQuestion();
+document.getElementById("nextBtn").onclick = () => {
+  if (selectedAnswer === questions[currentIndex].answer) {
+    score++;
+  }
+
+  currentIndex++;
+
+  if (currentIndex < questions.length) {
+    renderQuestion();
   } else {
     localStorage.setItem("score", score);
+    localStorage.setItem("total", questions.length);
     window.location.href = "result.html";
   }
-}
+};
