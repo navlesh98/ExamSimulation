@@ -1,0 +1,19 @@
+<select id="subject">
+  <option value="chemistry">Chemistry</option>
+  <option value="physics">Physics</option>
+</select>
+
+<select id="year">
+  <option value="2025">2025</option>
+  <option value="2024">2024</option>
+</select>
+
+<button onclick="startExam()">Start</button>
+
+<script>
+function startExam() {
+  const subject = document.getElementById("subject").value;
+  const year = document.getElementById("year").value;
+  window.location.href = `exam.html?subject=${subject}&year=${year}`;
+}
+</script>
